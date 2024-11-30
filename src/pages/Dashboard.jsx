@@ -19,11 +19,9 @@ import {
   Legend,
 } from 'chart.js';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faMagicWandSparkles,
-  faFileExport,
-} from '@fortawesome/free-solid-svg-icons';
+import { faMagicWandSparkles } from '@fortawesome/free-solid-svg-icons';
 import { supabase } from '../supabaseClient';
+import { SUMMARY_API_BASE_URL } from '../config/api.js';
 
 ChartJS.register(
   CategoryScale,
@@ -45,7 +43,6 @@ function Dashboard() {
   const [error, setError] = useState(null);
   const [savingsAmount, setSavingsAmount] = useState(0);
   const [creditCardAmount, setCreditCardAmount] = useState(0);
-  //const [detailedSummary, setDetailedSummary] = useState(''); // Removed
   const [summaryLoading, setSummaryLoading] = useState(false);
 
   useEffect(() => {
@@ -104,7 +101,7 @@ function Dashboard() {
         ),
       };
 
-      const response = await fetch('http://localhost:5050/query-account', {
+      const response = await fetch(`${SUMMARY_API_BASE_URL}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

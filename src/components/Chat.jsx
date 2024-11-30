@@ -3,6 +3,7 @@ import { Card, Form, Button, CloseButton } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faRobot } from '@fortawesome/free-solid-svg-icons';
 import { useChat } from '../contexts/ChatContext';
+import { CHAT_API_BASE_URL } from '../config/api.js';
 
 function Chat() {
   const { messages, addMessage, toggleChat } = useChat();
@@ -23,7 +24,7 @@ function Chat() {
     addMessage(userMessage);
 
     try {
-      const response = await fetch('http://127.0.0.1:5050/query', {
+      const response = await fetch(`${CHAT_API_BASE_URL}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
