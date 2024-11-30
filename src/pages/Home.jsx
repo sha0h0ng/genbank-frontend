@@ -81,7 +81,7 @@ function Home() {
               </p>
             </Col>
             <Col md={4} className='text-md-end'>
-              <Link to='/login'>
+              <Link to='/about'>
                 <Button variant='success' size='lg'>
                   Start Journey Here
                 </Button>

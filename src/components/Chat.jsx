@@ -1,5 +1,7 @@
-import React, { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { Card, Form, Button, CloseButton } from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faRobot } from '@fortawesome/free-solid-svg-icons';
 import { useChat } from '../contexts/ChatContext';
 
 function Chat() {
@@ -26,7 +28,10 @@ function Chat() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ question: newMessage }),
+        body: JSON.stringify({
+          question: newMessage,
+          template_type: 'bank_teller',
+        }),
       });
 
       if (!response.ok) throw new Error('Failed to send message');
@@ -54,7 +59,8 @@ function Chat() {
       style={{ width: '400px', height: '500px', zIndex: 1001 }}
     >
       <Card.Header className='d-flex justify-content-between align-items-center'>
-        Chat Support
+        <FontAwesomeIcon icon={faRobot} />
+        Chat with GenBot
         <CloseButton onClick={toggleChat} />
       </Card.Header>
       <Card.Body className='overflow-auto px-3 py-2'>

@@ -3,6 +3,14 @@ import { Link, useNavigate } from 'react-router-dom';
 import { Navbar, Nav, NavDropdown, Container, Button } from 'react-bootstrap';
 import { createClient } from '@supabase/supabase-js';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faHome,
+  faPiggyBank,
+  faMobileAlt,
+  faGift,
+  faTachometerAlt,
+  faChartBar,
+} from '@fortawesome/free-solid-svg-icons';
 import { faSignInAlt } from '@fortawesome/free-solid-svg-icons';
 
 const supabase = createClient(
@@ -11,6 +19,7 @@ const supabase = createClient(
 );
 
 function Header({ user }) {
+  console.log('Current user:', user);
   const [expanded, setExpanded] = useState(false);
   const navigate = useNavigate();
 
@@ -38,28 +47,49 @@ function Header({ user }) {
         <Navbar.Collapse id='basic-navbar-nav'>
           <Nav className='me-auto'>
             <Nav.Link as={Link} to='/' onClick={closeNavbar}>
+              <FontAwesomeIcon icon={faHome} className='me-2 text-success' />
               Home
             </Nav.Link>
-            <NavDropdown title='Services' id='basic-nav-dropdown'>
-              <NavDropdown.Item
-                as={Link}
-                to='/services/loans-mortgages'
-                onClick={closeNavbar}
-              >
-                Loans & Mortgages
-              </NavDropdown.Item>
+            <NavDropdown
+              title={
+                <>
+                  <FontAwesomeIcon
+                    icon={faChartBar}
+                    className='me-2 text-success'
+                  />
+                  Services
+                </>
+              }
+              id='basic-nav-dropdown'
+            >
               <NavDropdown.Item
                 as={Link}
                 to='/services/accounts'
                 onClick={closeNavbar}
               >
+                <FontAwesomeIcon
+                  icon={faPiggyBank}
+                  className='me-2 text-success'
+                />
                 Savings & Current Accounts
+              </NavDropdown.Item>
+              <NavDropdown.Item
+                as={Link}
+                to='/services/loans-mortgages'
+                onClick={closeNavbar}
+              >
+                <FontAwesomeIcon icon={faHome} className='me-2 text-success' />
+                Loans & Mortgages
               </NavDropdown.Item>
               <NavDropdown.Item
                 as={Link}
                 to='/services/digital'
                 onClick={closeNavbar}
               >
+                <FontAwesomeIcon
+                  icon={faMobileAlt}
+                  className='me-2 text-success'
+                />
                 Digital Services
               </NavDropdown.Item>
               <NavDropdown.Item
@@ -67,6 +97,7 @@ function Header({ user }) {
                 to='/services/promotions'
                 onClick={closeNavbar}
               >
+                <FontAwesomeIcon icon={faGift} className='me-2 text-success' />
                 Promotions
               </NavDropdown.Item>
             </NavDropdown>
@@ -75,6 +106,10 @@ function Header({ user }) {
             {user ? (
               <>
                 <Nav.Link as={Link} to='/dashboard' onClick={closeNavbar}>
+                  <FontAwesomeIcon
+                    icon={faTachometerAlt}
+                    className='me-2 text-success'
+                  />
                   Dashboard
                 </Nav.Link>
                 <Button

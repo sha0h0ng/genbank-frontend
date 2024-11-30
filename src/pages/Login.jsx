@@ -1,14 +1,9 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { supabase } from '../supabaseClient';
 import { Container, Row, Col, Form, Button, Alert } from 'react-bootstrap';
-import { createClient } from '@supabase/supabase-js';
 
-const supabase = createClient(
-  import.meta.env.VITE_SUPABASE_URL,
-  import.meta.env.VITE_SUPABASE_ANON_KEY
-);
-
-function Login() {
+function Login({ setUser }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
@@ -26,6 +21,7 @@ function Login() {
 
       if (error) throw error;
 
+      setUser(data.user);
       navigate('/dashboard');
     } catch (error) {
       setError(error.message);
@@ -61,7 +57,7 @@ function Login() {
               />
             </Form.Group>
 
-            <Button variant='primary' type='submit' className='w-100'>
+            <Button variant='success' type='submit' className='w-100'>
               Login
             </Button>
           </Form>

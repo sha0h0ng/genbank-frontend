@@ -19,11 +19,6 @@ function Footer() {
                 </Link>
               </li>
               <li>
-                <Link to='/services' className='text-white'>
-                  Our Services
-                </Link>
-              </li>
-              <li>
                 <Link to='/contact' className='text-white'>
                   Contact Us
                 </Link>
@@ -39,7 +34,7 @@ function Footer() {
               <br />
               Singapore 048616
               <br />
-              Phone: +65 6123 4567
+              Phone: 1800-436-2265
             </address>
           </Col>
         </Row>
